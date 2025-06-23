@@ -106,7 +106,7 @@ export default function TableauResultats({ data, titre }) {
 
   return (
     <div
-      className="bg-white shadow rounded-2xl p-4 mb-8"
+      className="bg-white shadow rounded-2xl p-4 mb-8 mx-1 table-responsive"
       style={{
         display: "block",
         width: "fit-content",
