@@ -101,7 +101,7 @@ export default function TableauRepartitionAjout({ effectifData, specialties, onD
 
   return (
     <div
-      className="bg-white shadow rounded-2xl p-4 mb-8 mx-1"
+      className="bg-white shadow rounded-2xl p-4 mb-8" // أزل mx-1
       style={{
         marginLeft: "auto",
         marginRight: "auto",
@@ -112,8 +112,8 @@ export default function TableauRepartitionAjout({ effectifData, specialties, onD
       }}
     >
       <h2 className="text-xl font-bold text-gray-700 mb-4 text-center">{titre || "Répartition"}</h2>
-      <div className="table-responsive" style={{ width: "auto", overflowX: "auto", margin: "auto" }}>
-        <table className="table-compact" style={{ margin: "auto" }}>
+      <div className="table-responsive" style={{ width: "auto", overflowX: "auto" }}>
+        <table className="table-compact">
           <thead>
             <tr>
               <th>Spécialité</th>

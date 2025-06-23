@@ -106,7 +106,7 @@ export default function TableauResultats({ data, titre }) {
 
   return (
     <div
-      className="bg-white shadow rounded-2xl p-4 mb-8 mx-1"
+      className="bg-white shadow rounded-2xl p-4 mb-8" // أزل mx-1
       style={{
         marginLeft: "auto",
         marginRight: "auto",
@@ -122,12 +122,11 @@ export default function TableauResultats({ data, titre }) {
         style={{
           width: "auto",
           overflowX: "auto",
-          margin: "auto",
           display: "block",
           maxWidth: "100%"
         }}
       >
-        <table className="table-compact" style={{ margin: "auto" }}>
+        <table className="table-compact">
           <thead>
             <tr>
               <th>Type</th>
