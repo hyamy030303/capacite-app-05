@@ -39,7 +39,6 @@ td {
   font-size: 0.8rem !important;
   border-collapse: collapse;
   width: auto;
-  margin: auto;
   min-width: unset;
   max-width: 100%;
 }
@@ -69,7 +68,7 @@ td {
 .tables-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 4px !important;              /* قلل المسافة بين الجداول */
+  gap: 10px !important;              /* قلل المسافة بين الجداول */
   justify-content: center;          /* لتوسيط الجداول في الوسط */
   align-items: flex-start;
   margin-bottom: 10px !important;
