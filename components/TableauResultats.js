@@ -106,10 +106,8 @@ export default function TableauResultats({ data, titre }) {
 
   return (
     <div
-      className="bg-white shadow rounded-2xl p-4 mb-8" // أزل mx-1
+      className="bg-white shadow rounded-2xl p-4 mb-8"
       style={{
-        marginLeft: "auto",
-        marginRight: "auto",
         display: "block",
         width: "fit-content",
         minWidth: 0,
