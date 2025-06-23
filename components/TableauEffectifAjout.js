@@ -67,14 +67,17 @@ export default function TableauEffectifAjout({
 
   return (
     <div
-      className="bg-white shadow rounded-2xl mb-8"
+      className="bg-white shadow rounded-2xl p-4 mb-8 mx-1"
       style={{
+        marginLeft: "auto",
+        marginRight: "auto",
+        display: "block",
         width: "fit-content",
-        margin: "auto",
-        padding: "1rem 2rem" // padding أفقي وعمودي حول الجدول من كل الجهات
+        minWidth: 0,
+        maxWidth: "100%"
       }}
     >
-      <h2 className="text-xl font-bold text-gray-700 mb-2 text-center">{titre}</h2>
+      <h2 className="text-xl font-bold text-gray-700 mb-4 text-center">{titre}</h2>
       <div
         className="table-responsive"
         style={{ width: "auto", overflowX: "auto", margin: "auto" }}
