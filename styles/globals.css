@@ -78,7 +78,7 @@ td {
 .tables-row > * {
   min-width: 220px;
   max-width: 100%;
-  flex: 1 1 220px;
+  flex: 0 0 auto; /* يمنع التمدد ويجعل كل جدول بعرض محتواه */
 }
 
 @media (max-width: 800px) {
