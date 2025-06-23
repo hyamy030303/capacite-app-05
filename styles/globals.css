@@ -60,16 +60,17 @@ td {
 /* لجعل الجدول متجاوبًا */
 .table-responsive {
   overflow-x: auto;
-  width: 100%;
+  width: auto;
   display: block;
+  max-width: 100%;
 }
 
 /* ----------- إضافة لجعل الجداول جنبًا إلى جنب ----------- */
 .tables-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px !important;              /* قلل المسافة بين الجداول */
-  justify-content: center;          /* لتوسيط الجداول في الوسط */
+  gap: 6px !important;   /* أو 4px حسب رغبتك */
+  justify-content: center;
   align-items: flex-start;
   margin-bottom: 10px !important;
 }
