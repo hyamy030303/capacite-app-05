@@ -15,7 +15,8 @@ const salleTitles = [
   { key: "tp3", label: "Salles TP3" },
 ];
 
-const defaultSalle = (cno, semaines, heures, maxApprenants = 26, diviseur) => ({
+// diviseur = 1 افتراضي دائمًا
+const defaultSalle = (cno, semaines, heures, maxApprenants = 26, diviseur = 1) => ({
   surface: "",
   cno,
   semaines,
@@ -53,7 +54,13 @@ export default function TableauSalles({
     const newSalles = { ...salles };
     salleTitles.forEach(({ key }) => {
       if (!Array.isArray(newSalles[key]) || newSalles[key].length === 0) {
-        newSalles[key] = [defaultSalle(cnos[key], semaines[key], heures[key], apprenants[key])];
+        newSalles[key] = [defaultSalle(
+          cnos[key],
+          semaines[key],
+          heures[key],
+          apprenants[key],
+          diviseur[key] || 1 // مرر diviseur دائمًا
+        )];
         changed = true;
       }
     });
@@ -73,7 +80,7 @@ export default function TableauSalles({
       arr[index].heuresMax = calculerHeuresMax(
         arr[index].semaines,
         arr[index].heures,
-        arr[index].diviseur // أضف diviseur هنا
+        arr[index].diviseur || 1 // diviseur افتراضي 1
       );
       return { ...prev, [type]: arr };
     });
@@ -100,7 +107,7 @@ export default function TableauSalles({
       const arr = prev[type].map(salle => ({
         ...salle,
         semaines: value,
-        heuresMax: calculerHeuresMax(value, salle.heures, salle.diviseur)
+        heuresMax: calculerHeuresMax(value, salle.heures, salle.diviseur || 1)
       }));
       return { ...prev, [type]: arr };
     });
@@ -111,7 +118,7 @@ export default function TableauSalles({
       const arr = prev[type].map(salle => ({
         ...salle,
         heures: value,
-        heuresMax: calculerHeuresMax(salle.semaines, value, salle.diviseur)
+        heuresMax: calculerHeuresMax(salle.semaines, value, salle.diviseur || 1)
       }));
       return { ...prev, [type]: arr };
     });
@@ -149,7 +156,13 @@ export default function TableauSalles({
       ...prev,
       [type]: [
         ...prev[type],
-        defaultSalle(cnos[type], semaines[type], heures[type], apprenants[type], diviseur[type] || 1)
+        defaultSalle(
+          cnos[type],
+          semaines[type],
+          heures[type],
+          apprenants[type],
+          diviseur[type] || 1 // مرر diviseur دائمًا
+        )
       ],
     }));
   };
@@ -167,7 +180,7 @@ export default function TableauSalles({
               ...arr[0],
               surface: "",
               surfaceP: calculerSurfacePedagogique(0, arr[0].cno, apprenants[type]),
-              heuresMax: calculerHeuresMax(arr[0].semaines, arr[0].heures, arr[0].diviseur),
+              heuresMax: calculerHeuresMax(arr[0].semaines, arr[0].heures, arr[0].diviseur || 1),
             }
           ]
         };
@@ -210,7 +223,13 @@ export default function TableauSalles({
         {salleTitles.filter(({ key }) => visibleTables[key]).map(({ key, label }) => {
           const sallesType = salles[key] && salles[key].length > 0
             ? salles[key]
-            : [defaultSalle(cnos[key], semaines[key], heures[key], apprenants[key], diviseur[key] || 1)];
+            : [defaultSalle(
+                cnos[key],
+                semaines[key],
+                heures[key],
+                apprenants[key],
+                diviseur[key] || 1 // مرر diviseur دائمًا
+              )];
           const totalHeuresMax = sommeColonne(sallesType.map(s => Number(s.heuresMax) || 0));
           const moyenneSurfaceP = moyenneColonne(sallesType.map(s => Number(s.surfaceP) || 0));
           return (
