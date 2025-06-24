@@ -245,8 +245,16 @@ export default function TableauSalles({
                   </select>
                 </div>
               </div>
-              <div className="table-responsive flex justify-center" style={{ width: "100%", overflowX: "auto" }}>
-                <table className="compact-table table-compact">
+              <div
+                className="table-responsive flex justify-center"
+                style={{
+                  width: "100%",
+                  overflowX: "auto",
+                  justifyContent: "center",
+                  display: "flex"
+                }}
+              >
+                <table className="compact-table table-compact" style={{ margin: "auto" }}>
                   <thead>
                     <tr>
                       <th>Code</th>
