@@ -163,6 +163,7 @@ export default function TableauSalles({
   const cnoOptions = Array.from({ length: 21 }, (_, i) => +(1 + i * 0.1));
   const semainesOptions = Array.from({ length: 100 }, (_, i) => i + 1);
   const apprenantsOptions = Array.from({ length: 21 }, (_, i) => 10 + i);
+  const diviseurOptions = Array.from({ length: 6 }, (_, i) => i + 1);
 
   // قائمة اختيار الجداول
   const handleTableCheck = (key) => {
