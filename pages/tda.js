@@ -21,7 +21,7 @@ function calculerPourcentageLigne(heuresRestantes, heuresDemandées, etat) {
 const moyenne = arr => arr.length ? arr.reduce((a, b) => a + b, 0) / arr.length : 0;
 const somme = arr => arr.reduce((a, b) => a + b, 0);
 
-const defaultSalle = (cno, semaines, heures, diviseur) => ({
+const defaultSalle = (cno, semaines, heures, diviseur = 1) => ({
   surface: "",
   cno,
   semaines,
@@ -34,11 +34,11 @@ const defaultSalle = (cno, semaines, heures, diviseur) => ({
 export default function TDA() {
   const pdfRef = useRef();
   const [salles, setSalles] = useState({
-    theorie: [defaultSalle(1.0, 72, 56)],
-    pratique: [defaultSalle(1.0, 72, 56)],
-    tpSpecifiques: [defaultSalle(1.0, 72, 56)],
-    tp2: [defaultSalle(1.0, 72, 56)],
-    tp3: [defaultSalle(1.0, 72, 56)],
+    theorie: [defaultSalle(1.0, 72, 56, 1)],
+    pratique: [defaultSalle(1.0, 72, 56, 1)],
+    tpSpecifiques: [defaultSalle(1.0, 72, 56, 1)],
+    tp2: [defaultSalle(1.0, 72, 56, 1)],
+    tp3: [defaultSalle(1.0, 72, 56, 1)],
   });
   const [cnos, setCnos] = useState({
     theorie: 1.0,
@@ -94,11 +94,11 @@ export default function TDA() {
     if (saved) {
       const parsed = JSON.parse(saved);
       setSalles({
-        theorie: parsed.salles?.theorie || [defaultSalle(1.0, 72, 56)],
-        pratique: parsed.salles?.pratique || [defaultSalle(1.0, 72, 56)],
-        tpSpecifiques: parsed.salles?.tpSpecifiques || [defaultSalle(1.0, 72, 56)],
-        tp2: parsed.salles?.tp2 || [defaultSalle(1.0, 72, 56)],
-        tp3: parsed.salles?.tp3 || [defaultSalle(1.0, 72, 56)],
+        theorie: parsed.salles?.theorie || [defaultSalle(1.0, 72, 56, 1)],
+        pratique: parsed.salles?.pratique || [defaultSalle(1.0, 72, 56, 1)],
+        tpSpecifiques: parsed.salles?.tpSpecifiques || [defaultSalle(1.0, 72, 56, 1)],
+        tp2: parsed.salles?.tp2 || [defaultSalle(1.0, 72, 56, 1)],
+        tp3: parsed.salles?.tp3 || [defaultSalle(1.0, 72, 56, 1)],
       });
       setEffectif(parsed.effectif || [{ specialite: "", groupes: 0, apprenants: 0 }]);
       setRepartition({
@@ -331,11 +331,11 @@ export default function TDA() {
   const handleReset = () => {
     localStorage.removeItem("tdaData");
     setSalles({
-      theorie: [defaultSalle(1.0, 72, 56)],
-      pratique: [defaultSalle(1.0, 72, 56)],
-      tpSpecifiques: [defaultSalle(1.0, 72, 56)],
-      tp2: [defaultSalle(1.0, 72, 56)],
-      tp3: [defaultSalle(1.0, 72, 56)],
+      theorie: [defaultSalle(1.0, 72, 56, 1)],
+      pratique: [defaultSalle(1.0, 72, 56, 1)],
+      tpSpecifiques: [defaultSalle(1.0, 72, 56, 1)],
+      tp2: [defaultSalle(1.0, 72, 56, 1)],
+      tp3: [defaultSalle(1.0, 72, 56, 1)],
     });
     setEffectif([{ specialite: "", groupes: 0, apprenants: 0 }]);
     setRepartition({

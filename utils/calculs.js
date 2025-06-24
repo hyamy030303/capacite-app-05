@@ -9,7 +9,7 @@ export function calculerHeuresMax(semaines, heuresParSemaine = 56, diviseur) {
   const h = Number(heuresParSemaine);
   const d = Number(diviseur);
 
-  if (isNaN(s) || isNaN(h) || isNaN(h)) return 0;
+  if (isNaN(s) || isNaN(h) || isNaN(d)) return 0; // صحح هنا
   return h * s * d;
 }
 

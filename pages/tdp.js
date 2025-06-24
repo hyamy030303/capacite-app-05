@@ -24,7 +24,7 @@ function calculerPourcentageLigne(heuresRestantes, heuresDemandées, etat) {
 const moyenne = arr => arr.length ? arr.reduce((a, b) => a + b, 0) / arr.length : 0;
 const somme = arr => arr.reduce((a, b) => a + b, 0);
 
-const defaultSalle = (cno, semaines, heures, diviseur) => ({
+const defaultSalle = (cno, semaines, heures, diviseur = 1) => ({
   surface: "",
   cno,
   semaines,
@@ -323,11 +323,11 @@ export default function TDP() {
   const handleReset = () => {
     localStorage.removeItem("tdpData");
     setSalles({
-      theorie: [defaultSalle(1.0, 72, 56)],
-      pratique: [defaultSalle(1.0, 72, 56)],
-      tpSpecifiques: [defaultSalle(1.0, 72, 56)],
-      tp2: [defaultSalle(1.0, 72, 56)],
-      tp3: [defaultSalle(1.0, 72, 56)],
+      theorie: [defaultSalle(1.0, 72, 56,1)],
+      pratique: [defaultSalle(1.0, 72, 56,1)],
+      tpSpecifiques: [defaultSalle(1.0, 72, 56,1)],
+      tp2: [defaultSalle(1.0, 72, 56,1)],
+      tp3: [defaultSalle(1.0, 72, 56,1)],
     });
     setEffectif([{ specialite: "", groupes: 0, groupesAjout: 0, apprenants: 0 }]);
     setRepartition({

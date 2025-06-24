@@ -72,7 +72,8 @@ export default function TableauSalles({
       );
       arr[index].heuresMax = calculerHeuresMax(
         arr[index].semaines,
-        arr[index].heures
+        arr[index].heures,
+        arr[index].diviseur // أضف diviseur هنا
       );
       return { ...prev, [type]: arr };
     });
@@ -110,7 +111,7 @@ export default function TableauSalles({
       const arr = prev[type].map(salle => ({
         ...salle,
         heures: value,
-        heuresMax: calculerHeuresMax(salle.semaines,salle.diviseur, value)
+        heuresMax: calculerHeuresMax(salle.semaines, value, salle.diviseur)
       }));
       return { ...prev, [type]: arr };
     });
@@ -136,8 +137,8 @@ export default function TableauSalles({
     setSalles(prev => {
       const arr = prev[type].map(salle => ({
         ...salle,
-        heures: value,
-        heuresMax: calculerHeuresMax(salle.semaines,salle.Heurs, value)
+        diviseur: value,
+        heuresMax: calculerHeuresMax(salle.semaines, salle.heures, value)
       }));
       return { ...prev, [type]: arr };
     });
