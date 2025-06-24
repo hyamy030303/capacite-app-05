@@ -309,17 +309,14 @@ export function generatePDF({ sallesSummary, apprenantsSummary, resultatsTable, 
 
       // --- جدول Dépendances في الوسط ---
       if (dependancesSummary && dependancesSummary.length > 0) {
-        pdf.setFontSize(11);
-        pdf.text('Synthèse des dépendances', pageWidth / 2, tableStartY, { align: 'center' });
-        tableStartY += 4;
-
+        // لا تكتب عنوان الجدول هنا
         autoTable(pdf, {
           startY: tableStartY,
           head: [dependancesSummary[0]],
           body: dependancesSummary.slice(1),
           styles: { fontSize: 9, cellWidth: 'wrap', wordBreak: 'normal' },
           theme: 'grid',
-          headStyles: { fillColor: [52, 152, 219] },
+          headStyles: { fillColor: [236, 72, 153] }, // وردي
           margin: { left: (pageWidth - tableWidth) / 2 },
           tableWidth: tableWidth,
           pageBreak: 'avoid'
@@ -332,12 +329,7 @@ export function generatePDF({ sallesSummary, apprenantsSummary, resultatsTable, 
       const remarqueText =
         "Remarques:\n" +
         "1. Ce rapport propose une estimation diagnostique de la capacité d'accueil, basée sur les données saisies. C'est un outil d'aide à la décision pour optimiser la planification, et non une validation définitive.\n" +
-        "2. Les résultats de l'étude précitée demeurent tributaires de la disponibilité des éléments suivants :\n" +
-        "- Équipe de formateurs adéquate aux groupes et spécialités.\n" +
-        "- Certificat de prévention des risques de la Protection Civile.\n" +
-        "- Voies de circulation et système de ventilation adéquats\n" +
-        "- Équipements nécessaires selon la spécificité des spécialités";
-
+        "2. Les résultats de l'étude demeurent tributaires de la disponibilité des dépendances précitées" ;
       // تقدير ارتفاع النص (كل سطر تقريباً 6مم)
       const remarqueLines = remarqueText.split('\n').length;
       const remarqueHeight = remarqueLines * 6 + 4;

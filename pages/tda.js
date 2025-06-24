@@ -84,6 +84,7 @@ export default function TDA() {
   const [showRepartition, setShowRepartition] = useState(false);
   const [showResultats, setShowResultats] = useState(false);
   const [showDependances, setShowDependances] = useState(false);
+  const [dependancesChoices, setDependancesChoices] = useState([0, 0, 0, 0]);
 
   const specialties = useSpecialties();
 
@@ -357,13 +358,14 @@ export default function TDA() {
     "Équipements nécessaires selon la spécificité des spécialités"
   ];
 
-  // إذا كنت تحفظ اختيارات المستخدم في state في TableauDependances، استبدل القيم أدناه بالقيم الحقيقية
-  // هنا مثال افتراضي: الكل غير محدد
-  const dependancesStates = ["---", "---", "---", "---"];
+  // جهّز العلامات حسب اختيارات المستخدم:
+  const dependancesStates = dependancesChoices.map(v =>
+    v === 1 ? "✓" : v === 2 ? "✗" : "---"
+  );
 
   // ملخص جدول الديبوندانس للـ PDF
   const dependancesSummary = [
-    ["Dépendance", "État"],
+    ["Dépendances", "État"],
     ...dependancesList.map((dep, i) => [dep, dependancesStates[i] || "---"])
   ];
 
@@ -466,7 +468,10 @@ export default function TDA() {
         </div>
         {/* هنا يظهر جدول الديبوندانس أسفل الجداول الثلاثة وليس بجانبها */}
         {showDependances && (
-          <TableauDependances />
+          <TableauDependances
+            choices={dependancesChoices}
+            setChoices={setDependancesChoices}
+          />
         )}
       </div>
       <div className="tight-buttons flex flex-col md:flex-row flex-wrap justify-center">

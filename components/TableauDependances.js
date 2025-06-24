@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 const dependancesList = [
   "Équipe de formateurs adéquate aux groupes et spécialités",
@@ -7,9 +7,8 @@ const dependancesList = [
   "Équipements nécessaires selon la spécificité des spécialités"
 ];
 
-export default function TableauDependances() {
-  // 0: غير محدد، 1: ✓ أخضر، 2: ✗ أحمر
-  const [choices, setChoices] = useState(Array(dependancesList.length).fill(0));
+export default function TableauDependances({ choices, setChoices }) {
+  // لم نعد نستخدم useState هنا، بل نستقبل choices و setChoices من props
 
   const handleSelect = (idx, value) => {
     setChoices(prev => {
@@ -21,12 +20,10 @@ export default function TableauDependances() {
 
   return (
     <div
-      className="bg-white shadow rounded-2xl p-4 mb-8 mx-1 table-responsive"
+      className="bg-white shadow rounded-2xl p-4 mb-8 table-responsive"
       style={{
-        marginLeft: "auto",
-        marginRight: "auto",
         display: "block",
-        width: "fit-content", // يجعل الحاوية على قدر الجدول
+        width: "fit-content",
         minWidth: 0,
         maxWidth: "100%"
       }}
