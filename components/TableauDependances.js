@@ -26,8 +26,8 @@ export default function TableauDependances({ choices, setChoices }) {
         width: "fit-content",
         minWidth: 0,
         maxWidth: "100%",
-        marginLeft: "auto",    // أضف هذا
-        marginRight: "auto"    // وأضف هذا
+        marginLeft: "auto",
+        marginRight: "auto"
       }}
     >
       <h2 className="text-xl font-bold text-gray-700 mb-4 text-center table-title">Dépendances</h2>
@@ -67,8 +67,8 @@ export default function TableauDependances({ choices, setChoices }) {
                   }}
                 >
                   <option value={0}>---</option>
-                  <option value={1} style={{ color: "#16a34a" }}>✓</option>
-                  <option value={2} style={{ color: "#dc2626" }}>✗</option>
+                  <option value={1} style={{ color: "#16a34a" }}>Oui</option>
+                  <option value={2} style={{ color: "#dc2626" }}>Non</option>
                 </select>
               </td>
             </tr>

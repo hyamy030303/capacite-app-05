@@ -381,12 +381,12 @@ export default function TDP() {
     "Équipements nécessaires selon la spécificité des spécialités"
   ];
 
-  // 2. جهّز العلامات حسب اختيارات المستخدم:
+  // 2. جهّز العلامات حسب اختيارات المستخدم (استبدل ✓/✗ بـ Oui/Non):
   const dependancesStates = dependancesChoices.map(v =>
-    v === 1 ? "✓" : v === 2 ? "✗" : "---"
+    v === 1 ? "Oui" : v === 2 ? "Non" : "---"
   );
 
-  // 3. ملخص جدول الديبوندانس للـ PDF
+  // ملخص جدول الديبوندانس للـ PDF
   const dependancesSummary = [
     ["Dépendance", "État"],
     ...dependancesList.map((dep, i) => [dep, dependancesStates[i]])

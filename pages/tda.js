@@ -360,9 +360,9 @@ export default function TDA() {
     "Équipements nécessaires selon la spécificité des spécialités"
   ];
 
-  // جهّز العلامات حسب اختيارات المستخدم:
+  // جهّز العلامات حسب اختيارات المستخدم (استبدل ✓/✗ بـ Oui/Non):
   const dependancesStates = dependancesChoices.map(v =>
-    v === 1 ? "✓" : v === 2 ? "✗" : "---"
+    v === 1 ? "Oui" : v === 2 ? "Non" : "---"
   );
 
   // ملخص جدول الديبوندانس للـ PDF
