@@ -20,7 +20,7 @@ function loadLogoMinistere(callback) {
   };
 }
 
-export function generatePDF({ sallesSummary, apprenantsSummary, resultatsTable }) {
+export function generatePDF({ sallesSummary, apprenantsSummary, resultatsTable, dependancesSummary }) {
   if (typeof window === 'undefined') {
     alert('⚠️ لا يمكن توليد PDF - يتم تنفيذ الكود خارج المتصفح.');
     return;
