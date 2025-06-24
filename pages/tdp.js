@@ -24,13 +24,14 @@ function calculerPourcentageLigne(heuresRestantes, heuresDemandées, etat) {
 const moyenne = arr => arr.length ? arr.reduce((a, b) => a + b, 0) / arr.length : 0;
 const somme = arr => arr.reduce((a, b) => a + b, 0);
 
-const defaultSalle = (cno, semaines, heures) => ({
+const defaultSalle = (cno, semaines, heures, diviseur) => ({
   surface: "",
   cno,
   semaines,
   heures,
+  diviseur,
   surfaceP: 0,
-  heuresMax: Math.round(semaines * heures),
+  heuresMax: Math.round(semaines * heures * diviseur),
 });
 
 export default function TDP() {

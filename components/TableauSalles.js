@@ -15,13 +15,14 @@ const salleTitles = [
   { key: "tp3", label: "Salles TP3" },
 ];
 
-const defaultSalle = (cno, semaines, heures, maxApprenants = 26) => ({
+const defaultSalle = (cno, semaines, heures, maxApprenants = 26, diviseur) => ({
   surface: "",
   cno,
   semaines,
   heures,
+  diviseur,
   surfaceP: calculerSurfacePedagogique(0, cno, maxApprenants),
-  heuresMax: calculerHeuresMax(semaines, heures),
+  heuresMax: calculerHeuresMax(semaines, heures, diviseur),
 });
 
 export default function TableauSalles({
@@ -34,7 +35,9 @@ export default function TableauSalles({
   heures,
   setHeures,
   apprenants,
-  setApprenants
+  setApprenants,
+  diviseur,
+  setDiviseur
 }) {
   // حالة إظهار الجداول
   const [visibleTables, setVisibleTables] = useState({
@@ -96,7 +99,7 @@ export default function TableauSalles({
       const arr = prev[type].map(salle => ({
         ...salle,
         semaines: value,
-        heuresMax: calculerHeuresMax(value, salle.heures)
+        heuresMax: calculerHeuresMax(value, salle.heures, salle.diviseur)
       }));
       return { ...prev, [type]: arr };
     });
@@ -107,7 +110,7 @@ export default function TableauSalles({
       const arr = prev[type].map(salle => ({
         ...salle,
         heures: value,
-        heuresMax: calculerHeuresMax(salle.semaines, value)
+        heuresMax: calculerHeuresMax(salle.semaines,salle.diviseur, value)
       }));
       return { ...prev, [type]: arr };
     });
@@ -128,12 +131,24 @@ export default function TableauSalles({
     });
   };
 
+  const updateDiviseur = (type, value) => {
+    setDiviseur(prev => ({ ...prev, [type]: value }));
+    setSalles(prev => {
+      const arr = prev[type].map(salle => ({
+        ...salle,
+        heures: value,
+        heuresMax: calculerHeuresMax(salle.semaines,salle.Heurs, value)
+      }));
+      return { ...prev, [type]: arr };
+    });
+  };
+
   const ajouterSalle = (type) => {
     setSalles(prev => ({
       ...prev,
       [type]: [
         ...prev[type],
-        defaultSalle(cnos[type], semaines[type], heures[type], apprenants[type])
+        defaultSalle(cnos[type], semaines[type], heures[type], apprenants[type], diviseur[type] || 1)
       ],
     }));
   };
@@ -151,7 +166,7 @@ export default function TableauSalles({
               ...arr[0],
               surface: "",
               surfaceP: calculerSurfacePedagogique(0, arr[0].cno, apprenants[type]),
-              heuresMax: calculerHeuresMax(arr[0].semaines, arr[0].heures)
+              heuresMax: calculerHeuresMax(arr[0].semaines, arr[0].heures, arr[0].diviseur),
             }
           ]
         };
@@ -194,7 +209,7 @@ export default function TableauSalles({
         {salleTitles.filter(({ key }) => visibleTables[key]).map(({ key, label }) => {
           const sallesType = salles[key] && salles[key].length > 0
             ? salles[key]
-            : [defaultSalle(cnos[key], semaines[key], heures[key], apprenants[key])];
+            : [defaultSalle(cnos[key], semaines[key], heures[key], apprenants[key], diviseur[key] || 1)];
           const totalHeuresMax = sommeColonne(sallesType.map(s => Number(s.heuresMax) || 0));
           const moyenneSurfaceP = moyenneColonne(sallesType.map(s => Number(s.surfaceP) || 0));
           return (
@@ -241,6 +256,15 @@ export default function TableauSalles({
                     className="text-xs px-1 py-1 h-6 border rounded w-14 text-center"
                   >
                     {apprenantsOptions.map(opt => (
+                      <option key={opt} value={opt}>{opt}</option>
+                    ))}
+                  </select>
+                  <select
+                    value={diviseur[key]}
+                    onChange={e => updateDiviseur(key, Number(e.target.value))}
+                    className="text-xs px-1 py-1 h-6 border rounded w-14 text-center"
+                  >
+                    {diviseurOptions.map(opt => (
                       <option key={opt} value={opt}>{opt}</option>
                     ))}
                   </select>

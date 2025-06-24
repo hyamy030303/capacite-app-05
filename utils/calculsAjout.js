@@ -4,11 +4,13 @@ export function calculerSurfacePedagogique(surface, cno, maxApprenants) {
   return result <= maxApprenants ? parseFloat(result.toFixed(2)) : maxApprenants;
 }
 
-export function calculerHeuresMax(semaines, heuresParSemaine = 56) {
+export function calculerHeuresMax(semaines, heuresParSemaine = 56, diviseur) {
   const s = Number(semaines);
   const h = Number(heuresParSemaine);
-  if (isNaN(s) || isNaN(h)) return 0;
-  return h * s;
+  const d = Number(diviseur);
+
+  if (isNaN(s) || isNaN(h) || isNaN(h)) return 0;
+  return h * s * d;
 }
 
 export function moyenneColonne(colonne) {
