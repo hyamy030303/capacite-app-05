@@ -112,6 +112,7 @@ export default function TDA() {
         moyenneTp2: parsed.repartition?.moyenneTp2 ?? 0,
         moyenneTp3: parsed.repartition?.moyenneTp3 ?? 0,
       });
+      setDependancesChoices(parsed.dependancesChoices || [0, 0, 0, 0]);
     }
   }, []);
 
@@ -321,7 +322,7 @@ export default function TDA() {
   };
 
   const handleSave = () => {
-    const data = { salles, effectif, repartition };
+    const data = { salles, effectif, repartition, dependancesChoices };
     localStorage.setItem("tdaData", JSON.stringify(data));
     alert("Les données ont été enregistrées !");
   };

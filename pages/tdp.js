@@ -309,18 +309,23 @@ export default function TDP() {
     });
   };
 
+  // 1. حفظ واسترجاع اختيارات الديبوندانس مع البيانات
+
+  // عدل handleSave ليحفظ dependancesChoices:
   const handleSave = () => {
-    const data = { salles, effectif, repartition };
+    const data = { salles, effectif, repartition, dependancesChoices };
     localStorage.setItem("tdpData", JSON.stringify(data));
     alert("Les données ont été enregistrées !");
   };
 
+  // عدل handleReset ليعيد الديبوندانس للوضع الافتراضي:
   const handleReset = () => {
     localStorage.removeItem("tdpData");
     alert("Les données ont été réinitialisées.");
     window.location.reload();
   };
 
+  // عدل useEffect ليقرأ dependancesChoices من التخزين:
   useEffect(() => {
     const saved = localStorage.getItem("tdpData");
     if (saved) {
@@ -345,6 +350,7 @@ export default function TDP() {
         moyenneTp2: parsed.repartition?.moyenneTp2 ?? 0,
         moyenneTp3: parsed.repartition?.moyenneTp3 ?? 0,
       });
+      setDependancesChoices(parsed.dependancesChoices || [0, 0, 0, 0]);
     }
   }, []);
 
