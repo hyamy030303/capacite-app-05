@@ -25,7 +25,9 @@ export default function TableauDependances({ choices, setChoices }) {
         display: "block",
         width: "fit-content",
         minWidth: 0,
-        maxWidth: "100%"
+        maxWidth: "100%",
+        marginLeft: "auto",    // أضف هذا
+        marginRight: "auto"    // وأضف هذا
       }}
     >
       <h2 className="text-xl font-bold text-gray-700 mb-4 text-center table-title">Dépendances</h2>

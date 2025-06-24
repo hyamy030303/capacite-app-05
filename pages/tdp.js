@@ -363,7 +363,7 @@ export default function TDP() {
   // 3. ملخص جدول الديبوندانس للـ PDF
   const dependancesSummary = [
     ["Dépendance", "État"],
-    ...dependancesList.map((dep, i) => [dep, dependancesStates[i] || "---"])
+    ...dependancesList.map((dep, i) => [dep, dependancesStates[i]])
   ];
 
   return (
