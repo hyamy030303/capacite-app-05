@@ -307,6 +307,26 @@ export function generatePDF({ sallesSummary, apprenantsSummary, resultatsTable, 
       // تحديث Y بعد الجدولين
       tableStartY = Math.max(resultsTableFinalY, globalTableFinalY) + 10;
 
+      // --- جدول Dépendances في الوسط ---
+      if (dependancesSummary && dependancesSummary.length > 0) {
+        pdf.setFontSize(11);
+        pdf.text('Synthèse des dépendances', pageWidth / 2, tableStartY, { align: 'center' });
+        tableStartY += 4;
+
+        autoTable(pdf, {
+          startY: tableStartY,
+          head: [dependancesSummary[0]],
+          body: dependancesSummary.slice(1),
+          styles: { fontSize: 9, cellWidth: 'wrap', wordBreak: 'normal' },
+          theme: 'grid',
+          headStyles: { fillColor: [52, 152, 219] },
+          margin: { left: (pageWidth - tableWidth) / 2 },
+          tableWidth: tableWidth,
+          pageBreak: 'avoid'
+        });
+        tableStartY = pdf.lastAutoTable.finalY + 10;
+      }
+
       // --- النص التوضيحي أسفل النتائج ---
       // حساب ارتفاع النص التوضيحي
       const remarqueText =

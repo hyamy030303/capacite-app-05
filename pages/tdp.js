@@ -347,6 +347,20 @@ export default function TDP() {
     }
   }, []);
 
+  const dependancesList = [
+    "Équipe de formateurs adéquate aux groupes et spécialités",
+    "Certificat de prévention des risques de la Protection Civil",
+    "Voies de circulation et système de ventilation adéquats",
+    "Équipements nécessaires selon la spécificité des spécialités"
+  ];
+  // إذا كنت تحفظ اختيارات المستخدم في state في TableauDependances، استبدل القيم أدناه بالقيم الحقيقية
+  const dependancesStates = ["---", "---", "---", "---"]; // مثال: الكل غير محدد
+
+  const dependancesSummary = [
+    ["Dépendance", "État"],
+    ...dependancesList.map((dep, i) => [dep, dependancesStates[i] || "---"])
+  ];
+
   return (
     <div className="min-h-screen bg-gray-100 p-2 sm:p-3 md:p-4">
       <div ref={pdfRef}>
@@ -477,7 +491,12 @@ export default function TDP() {
           🖨️ Imprimer
         </button>
         <button
-          onClick={() => generatePDF({ sallesSummary, apprenantsSummary, resultatsTable })}
+          onClick={() => generatePDF({
+            sallesSummary,
+            apprenantsSummary,
+            resultatsTable,
+            dependancesSummary // مرر ملخص الديبوندانس هنا
+          })}
           className="bg-green-500 hover:bg-green-700 text-white shadow"
         >
           📄 Rapport
