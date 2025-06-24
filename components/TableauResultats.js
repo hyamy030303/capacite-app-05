@@ -38,16 +38,16 @@ export default function TableauResultats({ data, titre }) {
     heuresRestantesTheo, moyenneBesoinTheo, moyenneSurfaceTheo
   );
   const apprenantsPossiblesPrat = calculerApprenantsPossibles(
-    heuresRestantesPrat, moyenneBesoinPrat, moyenneSurfacePrat
+    heuresRestantesPrat, moyenneBesoinPrat, moyenneSurfaceTheo
   );
   const apprenantsPossiblesTpSpec = calculerApprenantsPossibles(
-    heuresRestantesTpSpec, moyenneBesoinTpSpec, moyenneSurfaceTpSpec
+    heuresRestantesTpSpec, moyenneBesoinTpSpec, moyenneSurfaceTheo
   );
   const apprenantsPossiblesTp2 = calculerApprenantsPossibles(
-    heuresRestantesTp2, moyenneBesoinTp2, moyenneSurfaceTp2
+    heuresRestantesTp2, moyenneBesoinTp2, moyenneSurfaceTheo
   );
   const apprenantsPossiblesTp3 = calculerApprenantsPossibles(
-    heuresRestantesTp3, moyenneBesoinTp3, moyenneSurfaceTp3
+    heuresRestantesTp3, moyenneBesoinTp3, moyenneSurfaceTheo
   );
 
   const etatTheo = determinerEtat(heuresRestantesTheo);
