@@ -328,8 +328,8 @@ export function generatePDF({ sallesSummary, apprenantsSummary, resultatsTable, 
       // حساب ارتفاع النص التوضيحي
       const remarqueText =
         "Remarques:\n" +
-        "1. Ce rapport propose une estimation diagnostique de la capacité d'accueil, basée sur les données saisies. C'est un outil d'aide à la décision pour optimiser la planification, et non une validation définitive.\n" +
-        "2. Les résultats de l'étude demeurent tributaires de la disponibilité des dépendances précitées" ;
+        "1. Cette étude propose une estimation diagnostique de la capacité d'accueil, basée sur les données saisies. C'est un outil d'aide à la décision pour optimiser la planification, et non une validation définitive.\n" +
+        "2. Le résultat de l'étude demeure tributaire de la disponibilité des dépendances précitées" ;
       // تقدير ارتفاع النص (كل سطر تقريباً 6مم)
       const remarqueLines = remarqueText.split('\n').length;
       const remarqueHeight = remarqueLines * 6 + 4;
