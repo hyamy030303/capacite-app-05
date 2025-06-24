@@ -309,11 +309,26 @@ export function generatePDF({ sallesSummary, apprenantsSummary, resultatsTable, 
 
       // --- جدول Dépendances في الوسط ---
       if (dependancesSummary && dependancesSummary.length > 0) {
-        // لا تكتب عنوان الجدول هنا
+        // تجهيز body مع تلوين "Oui" و"Non"
+        const dependancesBody = dependancesSummary.slice(1).map(row => [
+          { content: row[0] },
+          {
+            content: row[1],
+            styles: {
+              textColor:
+                row[1] === "Oui"
+                  ? [22, 163, 74]   // أخضر
+                  : row[1] === "Non"
+                  ? [220, 38, 38]   // أحمر
+                  : [44, 44, 44]    // رمادي افتراضي
+            }
+          }
+        ]);
+
         autoTable(pdf, {
           startY: tableStartY,
           head: [dependancesSummary[0]],
-          body: dependancesSummary.slice(1),
+          body: dependancesBody,
           styles: { fontSize: 9, cellWidth: 'wrap', wordBreak: 'normal' },
           theme: 'grid',
           headStyles: { fillColor: [236, 72, 153] }, // وردي

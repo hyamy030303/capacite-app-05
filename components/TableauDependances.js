@@ -41,13 +41,19 @@ export default function TableauDependances({ choices, setChoices }) {
       >
         <colgroup>
           <col style={{ width: "auto", whiteSpace: "nowrap" }} />
-          <col style={{ width: "60px", whiteSpace: "nowrap" }} />
+          <col style={{ width: "90px", whiteSpace: "nowrap" }} /> {/* وسع العمود */}
         </colgroup>
         <tbody>
           {dependancesList.map((dep, idx) => (
             <tr key={idx}>
               <td style={{ fontSize: "0.85rem", whiteSpace: "nowrap" }}>{dep}</td>
-              <td style={{ fontSize: "1.1rem", textAlign: "center", whiteSpace: "nowrap" }}>
+              <td style={{
+                fontSize: "1.1rem",
+                textAlign: "center",
+                whiteSpace: "nowrap",
+                minWidth: 70, // مساحة أوسع
+                maxWidth: 120
+              }}>
                 <select
                   value={choices[idx]}
                   onChange={e => handleSelect(idx, e.target.value)}
@@ -63,7 +69,7 @@ export default function TableauDependances({ choices, setChoices }) {
                         : choices[idx] === 2
                         ? "#dc2626"
                         : "#444",
-                    width: "48px"
+                    width: "70px" // مساحة أوسع
                   }}
                 >
                   <option value={0}>---</option>
