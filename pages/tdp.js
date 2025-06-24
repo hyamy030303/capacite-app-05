@@ -37,11 +37,11 @@ const defaultSalle = (cno, semaines, heures, diviseur = 1) => ({
 export default function TDP() {
   const pdfRef = useRef();
   const [salles, setSalles] = useState({
-    theorie: [defaultSalle(1.0, 72, 56)],
-    pratique: [defaultSalle(1.0, 72, 56)],
-    tpSpecifiques: [defaultSalle(1.0, 72, 56)],
-    tp2: [defaultSalle(1.0, 72, 56)],
-    tp3: [defaultSalle(1.0, 72, 56)],
+    theorie: [defaultSalle(1.0, 72, 56, 1)],
+    pratique: [defaultSalle(1.0, 72, 56, 1)],
+    tpSpecifiques: [defaultSalle(1.0, 72, 56, 1)],
+    tp2: [defaultSalle(1.0, 72, 56, 1)],
+    tp3: [defaultSalle(1.0, 72, 56, 1)],
   });
   const [cnos, setCnos] = useState({
     theorie: 1.0,
@@ -310,24 +310,22 @@ export default function TDP() {
     });
   };
 
-  // 1. حفظ واسترجاع اختيارات الديبوندانس مع البيانات
-
-  // عدل handleSave ليحفظ dependancesChoices:
+  // حفظ واسترجاع اختيارات الديبوندانس مع البيانات
   const handleSave = () => {
     const data = { salles, effectif, repartition, dependancesChoices };
     localStorage.setItem("tdpData", JSON.stringify(data));
     alert("Les données ont été enregistrées !");
   };
 
-  // عدل handleReset ليعيد الديبوندانس للوضع الافتراضي:
+  // إعادة تعيين كل شيء للوضع الافتراضي
   const handleReset = () => {
     localStorage.removeItem("tdpData");
     setSalles({
-      theorie: [defaultSalle(1.0, 72, 56,1)],
-      pratique: [defaultSalle(1.0, 72, 56,1)],
-      tpSpecifiques: [defaultSalle(1.0, 72, 56,1)],
-      tp2: [defaultSalle(1.0, 72, 56,1)],
-      tp3: [defaultSalle(1.0, 72, 56,1)],
+      theorie: [defaultSalle(1.0, 72, 56, 1)],
+      pratique: [defaultSalle(1.0, 72, 56, 1)],
+      tpSpecifiques: [defaultSalle(1.0, 72, 56, 1)],
+      tp2: [defaultSalle(1.0, 72, 56, 1)],
+      tp3: [defaultSalle(1.0, 72, 56, 1)],
     });
     setEffectif([{ specialite: "", groupes: 0, groupesAjout: 0, apprenants: 0 }]);
     setRepartition({
@@ -342,21 +340,21 @@ export default function TDP() {
       moyenneTp2: 0,
       moyenneTp3: 0,
     });
-    setDependancesChoices([0, 0, 0, 0]); // أضف هذا السطر
+    setDependancesChoices([0, 0, 0, 0]);
     alert("Les données ont été réinitialisées.");
   };
 
-  // عدل useEffect ليقرأ dependancesChoices من التخزين:
+  // استرجاع البيانات من التخزين المحلي عند التحميل
   useEffect(() => {
     const saved = localStorage.getItem("tdpData");
     if (saved) {
       const parsed = JSON.parse(saved);
       setSalles({
-        theorie: parsed.salles?.theorie || [defaultSalle(1.0, 72, 56)],
-        pratique: parsed.salles?.pratique || [defaultSalle(1.0, 72, 56)],
-        tpSpecifiques: parsed.salles?.tpSpecifiques || [defaultSalle(1.0, 72, 56)],
-        tp2: parsed.salles?.tp2 || [defaultSalle(1.0, 72, 56)],
-        tp3: parsed.salles?.tp3 || [defaultSalle(1.0, 72, 56)],
+        theorie: parsed.salles?.theorie || [defaultSalle(1.0, 72, 56, 1)],
+        pratique: parsed.salles?.pratique || [defaultSalle(1.0, 72, 56, 1)],
+        tpSpecifiques: parsed.salles?.tpSpecifiques || [defaultSalle(1.0, 72, 56, 1)],
+        tp2: parsed.salles?.tp2 || [defaultSalle(1.0, 72, 56, 1)],
+        tp3: parsed.salles?.tp3 || [defaultSalle(1.0, 72, 56, 1)],
       });
       setEffectif(parsed.effectif || [{ specialite: "", groupes: 0, apprenants: 0 }]);
       setRepartition({
@@ -382,7 +380,7 @@ export default function TDP() {
     "Équipements nécessaires selon la spécificité des spécialités"
   ];
 
-  // 2. جهّز العلامات حسب اختيارات المستخدم (استبدل ✓/✗ بـ Oui/Non):
+  // تجهيز العلامات حسب اختيارات المستخدم (Oui/Non)
   const dependancesStates = dependancesChoices.map(v =>
     v === 1 ? "Oui" : v === 2 ? "Non" : "---"
   );

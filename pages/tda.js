@@ -263,43 +263,43 @@ export default function TDA() {
   ];
 
   const resultatsData = {
-  totalHeuresTheo,
-  totalHeuresPrat,
-  totalHeuresTpSpec,
-  totalHeuresTp2,
-  totalHeuresTp3,
-  besoinTheoTotal: repartition.besoinTheoTotal,
-  besoinPratTotal: repartition.besoinPratTotal,
-  besoinTpSpecTotal: repartition.besoinTpSpecTotal,
-  besoinTp2Total: repartition.besoinTp2Total,
-  besoinTp3Total: repartition.besoinTp3Total,
-  moyenneBesoinTheo: repartition.moyenneTheo,
-  moyenneBesoinPrat: repartition.moyennePrat,
-  moyenneBesoinTpSpec: repartition.moyenneTpSpec,
-  moyenneBesoinTp2: repartition.moyenneTp2,      // أضف هذا السطر
-  moyenneBesoinTp3: repartition.moyenneTp3,      // وأضف هذا السطر
-  moyenneSurfaceTheo,
-  moyenneSurfacePrat,
-  moyenneSurfaceTpSpec,
-  moyenneSurfaceTp2,
-  moyenneSurfaceTp3,
-  heuresRestantesTheo,
-  heuresRestantesPrat,
-  heuresRestantesTpSpec,
-  heuresRestantesTp2,
-  heuresRestantesTp3,
-  apprenantsPossiblesTheo,
-  apprenantsPossiblesPrat,
-  apprenantsPossiblesTpSpec,
-  apprenantsPossiblesTp2,
-  apprenantsPossiblesTp3,
-  etatTheo,
-  etatPrat,
-  etatTpSpec,
-  etatTp2,
-  etatTp3,
-  testGlobal
-};
+    totalHeuresTheo,
+    totalHeuresPrat,
+    totalHeuresTpSpec,
+    totalHeuresTp2,
+    totalHeuresTp3,
+    besoinTheoTotal: repartition.besoinTheoTotal,
+    besoinPratTotal: repartition.besoinPratTotal,
+    besoinTpSpecTotal: repartition.besoinTpSpecTotal,
+    besoinTp2Total: repartition.besoinTp2Total,
+    besoinTp3Total: repartition.besoinTp3Total,
+    moyenneBesoinTheo: repartition.moyenneTheo,
+    moyenneBesoinPrat: repartition.moyennePrat,
+    moyenneBesoinTpSpec: repartition.moyenneTpSpec,
+    moyenneBesoinTp2: repartition.moyenneTp2,
+    moyenneBesoinTp3: repartition.moyenneTp3,
+    moyenneSurfaceTheo,
+    moyenneSurfacePrat,
+    moyenneSurfaceTpSpec,
+    moyenneSurfaceTp2,
+    moyenneSurfaceTp3,
+    heuresRestantesTheo,
+    heuresRestantesPrat,
+    heuresRestantesTpSpec,
+    heuresRestantesTp2,
+    heuresRestantesTp3,
+    apprenantsPossiblesTheo,
+    apprenantsPossiblesPrat,
+    apprenantsPossiblesTpSpec,
+    apprenantsPossiblesTp2,
+    apprenantsPossiblesTp3,
+    etatTheo,
+    etatPrat,
+    etatTpSpec,
+    etatTp2,
+    etatTp3,
+    testGlobal
+  };
 
   const handleEffectifChange = (rows) => {
     setEffectif(rows.length ? rows : [{ specialite: "", groupes: 0, apprenants: 0 }]);
@@ -315,7 +315,6 @@ export default function TDA() {
       besoinTp3Total: r.besoinTP3Total ?? 0,
       moyenneTheo: r.moyenneBesoinTheoriqueParGroupe ?? 0,
       moyennePrat: r.moyenneBesoinPratiqueParGroupe ?? 0,
-      // أضف المتوسطات الأخرى إذا كنت تحسبها
       moyenneTpSpec: r.moyenneBesoinTpSpecParGroupe ?? 0,
       moyenneTp2: r.moyenneBesoinTp2ParGroupe ?? 0,
       moyenneTp3: r.moyenneBesoinTp3ParGroupe ?? 0,
@@ -350,7 +349,7 @@ export default function TDA() {
       moyenneTp2: 0,
       moyenneTp3: 0,
     });
-    setDependancesChoices([0, 0, 0, 0]); // أضف هذا السطر
+    setDependancesChoices([0, 0, 0, 0]);
     alert("Les données ont été réinitialisées.");
   };
 
