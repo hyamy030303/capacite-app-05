@@ -321,8 +321,28 @@ export default function TDP() {
   // عدل handleReset ليعيد الديبوندانس للوضع الافتراضي:
   const handleReset = () => {
     localStorage.removeItem("tdpData");
+    setSalles({
+      theorie: [defaultSalle(1.0, 72, 56)],
+      pratique: [defaultSalle(1.0, 72, 56)],
+      tpSpecifiques: [defaultSalle(1.0, 72, 56)],
+      tp2: [defaultSalle(1.0, 72, 56)],
+      tp3: [defaultSalle(1.0, 72, 56)],
+    });
+    setEffectif([{ specialite: "", groupes: 0, groupesAjout: 0, apprenants: 0 }]);
+    setRepartition({
+      besoinTheoTotal: 0,
+      besoinPratTotal: 0,
+      besoinTpSpecTotal: 0,
+      besoinTp2Total: 0,
+      besoinTp3Total: 0,
+      moyenneTheo: 0,
+      moyennePrat: 0,
+      moyenneTpSpec: 0,
+      moyenneTp2: 0,
+      moyenneTp3: 0,
+    });
+    setDependancesChoices([0, 0, 0, 0]); // أضف هذا السطر
     alert("Les données ont été réinitialisées.");
-    window.location.reload();
   };
 
   // عدل useEffect ليقرأ dependancesChoices من التخزين:

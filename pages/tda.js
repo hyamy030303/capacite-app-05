@@ -349,6 +349,7 @@ export default function TDA() {
       moyenneTp2: 0,
       moyenneTp3: 0,
     });
+    setDependancesChoices([0, 0, 0, 0]); // أضف هذا السطر
     alert("Les données ont été réinitialisées.");
   };
 
