@@ -37,18 +37,18 @@ const defaultSalle = (cno, semaines, heures, diviseur = 1) => ({
 export default function TDP() {
   const pdfRef = useRef();
   const [salles, setSalles] = useState({
-    theorie: [defaultSalle(1.0, 72, 56, 1)],
-    pratique: [defaultSalle(1.0, 72, 56, 1)],
-    tpSpecifiques: [defaultSalle(1.0, 72, 56, 1)],
-    tp2: [defaultSalle(1.0, 72, 56, 1)],
-    tp3: [defaultSalle(1.0, 72, 56, 1)],
+    theorie: [defaultSalle(1.2, 72, 56, 1)],
+    pratique: [defaultSalle(1.2, 72, 56, 1)],
+    tpSpecifiques: [defaultSalle(1.2, 72, 56, 1)],
+    tp2: [defaultSalle(1.2, 72, 56, 1)],
+    tp3: [defaultSalle(1.2, 72, 56, 1)],
   });
   const [cnos, setCnos] = useState({
-    theorie: 1.0,
-    pratique: 1.0,
-    tpSpecifiques: 1.0,
-    tp2: 1.0,
-    tp3: 1.0,
+    theorie: 1.2,
+    pratique: 1.2,
+    tpSpecifiques: 1.2,
+    tp2: 1.2,
+    tp3: 1.2,
   });
   const [semaines, setSemaines] = useState({
     theorie: 72,
@@ -328,11 +328,11 @@ export default function TDP() {
   const handleReset = () => {
     localStorage.removeItem("tdpData");
     setSalles({
-      theorie: [defaultSalle(1.0, 72, 56, 1)],
-      pratique: [defaultSalle(1.0, 72, 56, 1)],
-      tpSpecifiques: [defaultSalle(1.0, 72, 56, 1)],
-      tp2: [defaultSalle(1.0, 72, 56, 1)],
-      tp3: [defaultSalle(1.0, 72, 56, 1)],
+      theorie: [defaultSalle(1.2, 72, 56, 1)],
+      pratique: [defaultSalle(1.2, 72, 56, 1)],
+      tpSpecifiques: [defaultSalle(1.2, 72, 56, 1)],
+      tp2: [defaultSalle(1.2, 72, 56, 1)],
+      tp3: [defaultSalle(1.2, 72, 56, 1)],
     });
     setEffectif([{ specialite: "", groupes: 0, groupesAjout: 0, apprenants: 0 }]);
     setRepartition({
@@ -366,19 +366,19 @@ export default function TDP() {
       setSalles({
         theorie: parsed.salles?.theorie?.map(
           s => defaultSalle(s.cno, s.semaines, s.heures, s.diviseur)
-        ) || [defaultSalle(1.0, 72, 56, 1)],
+        ) || [defaultSalle(1.2, 72, 56, 1)],
         pratique: parsed.salles?.pratique?.map(
           s => defaultSalle(s.cno, s.semaines, s.heures, s.diviseur)
-        ) || [defaultSalle(1.0, 72, 56, 1)],
+        ) || [defaultSalle(1.2, 72, 56, 1)],
         tpSpecifiques: parsed.salles?.tpSpecifiques?.map(
           s => defaultSalle(s.cno, s.semaines, s.heures, s.diviseur)
-        ) || [defaultSalle(1.0, 72, 56, 1)],
+        ) || [defaultSalle(1.2, 72, 56, 1)],
         tp2: parsed.salles?.tp2?.map(
           s => defaultSalle(s.cno, s.semaines, s.heures, s.diviseur)
-        ) || [defaultSalle(1.0, 72, 56, 1)],
+        ) || [defaultSalle(1.2, 72, 56, 1)],
         tp3: parsed.salles?.tp3?.map(
           s => defaultSalle(s.cno, s.semaines, s.heures, s.diviseur)
-        ) || [defaultSalle(1.0, 72, 56, 1)],
+        ) || [defaultSalle(1.2, 72, 56, 1)],
       });
       setEffectif(parsed.effectif || [{ specialite: "", groupes: 0, groupesAjout: 0, apprenants: 0 }]);
       setRepartition({
