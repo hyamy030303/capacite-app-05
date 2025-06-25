@@ -253,11 +253,11 @@ export default function TableauSalles({
               <h2 className="compact-title table-title text-center mb-2">{label}</h2>
               <div className="mb-1 flex flex-col items-center">
                 <div className="flex gap-1 mb-1 justify-center">
-                  <span className="text-xs w-10 text-center">CNO</span>
-                  <span className="text-xs w-10 text-center">Sem.</span>
-                  <span className="text-xs w-10 text-center">Heures</span>
-                  <span className="text-xs w-10 text-center">Appr.</span>
-                  <span className="text-xs w-10 text-center">Diviseur</span>
+                  <span className="text-xs w-12 text-center">CNO</span>
+                  <span className="text-xs w-11 text-center">Sem.</span>
+                  <span className="text-xs w-11 text-center">Heures</span>
+                  <span className="text-xs w-9 text-center">Appr.</span>
+                  <span className="text-xs w-8 text-center">Diviseur</span>
                 </div>
                 <div className="flex gap-1 justify-center">
                   <select
