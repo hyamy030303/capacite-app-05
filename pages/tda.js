@@ -87,6 +87,13 @@ export default function TDA() {
   const [showResultats, setShowResultats] = useState(false);
   const [showDependances, setShowDependances] = useState(false);
   const [dependancesChoices, setDependancesChoices] = useState([0, 0, 0, 0]);
+  const [diviseur, setDiviseur] = useState({
+    theorie: 1,
+    pratique: 1,
+    tpSpecifiques: 1,
+    tp2: 1,
+    tp3: 1,
+  });
 
   const specialties = useSpecialties();
 
@@ -125,6 +132,14 @@ export default function TDA() {
         moyenneTp3: parsed.repartition?.moyenneTp3 ?? 0,
       });
       setDependancesChoices(parsed.dependancesChoices || [0, 0, 0, 0]);
+      // أضف هذا الجزء لتحديث diviseur من البيانات أو تهيئته افتراضياً
+      setDiviseur(parsed.diviseur || {
+        theorie: 1,
+        pratique: 1,
+        tpSpecifiques: 1,
+        tp2: 1,
+        tp3: 1,
+      });
     }
   }, []);
 
@@ -413,6 +428,8 @@ export default function TDA() {
             setHeures={setHeures}
             apprenants={apprenants}
             setApprenants={setApprenants}
+            diviseur={diviseur}
+            setDiviseur={setDiviseur}
           />
 
           {/* checkboxes الجديدة أسفل جداول القاعات وبنفس حجم الخط */}
