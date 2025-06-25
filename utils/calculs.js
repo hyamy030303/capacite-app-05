@@ -1,15 +1,17 @@
 export function calculerSurfacePedagogique(surface, cno, maxApprenants) {
-  const result = Number(surface) / Number(cno);
+  const s = Number(surface) || 0;
+  const c = Number(cno) || 1;
+  const m = Number(maxApprenants) || 1;
+  const result = s / c;
   if (isNaN(result) || !isFinite(result)) return 0;
-  return result <= maxApprenants ? parseFloat(result.toFixed(2)) : maxApprenants;
+  return result <= m ? parseFloat(result.toFixed(2)) : m;
 }
 
-export function calculerHeuresMax(semaines, heuresParSemaine = 56, diviseur) {
-  const s = Number(semaines);
-  const h = Number(heuresParSemaine);
-  const d = Number(diviseur);
-
-  if (isNaN(s) || isNaN(h) || isNaN(d)) return 0; // صحح هنا
+export function calculerHeuresMax(semaines, heuresParSemaine = 56, diviseur = 1) {
+  const s = Number(semaines) || 1;
+  const h = Number(heuresParSemaine) || 1;
+  const d = Number(diviseur) || 1;
+  if (isNaN(s) || isNaN(h) || isNaN(d)) return 0;
   return h * s * d;
 }
 
@@ -30,24 +32,24 @@ export function sommeColonne(colonne) {
 }
 
 export function calculerBesoinHoraireParSpecialite(nbGroupes, besoinParGroupe) {
-  const n = Number(nbGroupes);
-  const b = Number(besoinParGroupe);
+  const n = Number(nbGroupes) || 0;
+  const b = Number(besoinParGroupe) || 0;
   if (isNaN(n) || isNaN(b)) return 0;
   return n * b;
 }
 
 export function calculerHeuresRestantes(sommeHeuresMax, sommeBesoinParSpecialite) {
-  const a = Number(sommeHeuresMax);
-  const b = Number(sommeBesoinParSpecialite);
+  const a = Number(sommeHeuresMax) || 0;
+  const b = Number(sommeBesoinParSpecialite) || 0;
   if (isNaN(a) || isNaN(b)) return 0;
   return parseFloat((a - b).toFixed(2));
 }
 
 export function calculerApprenantsPossibles(heuresRestantes, moyenneBesoinParGroupe, moyenneSurfacePedagogique) {
-  const h = Number(heuresRestantes);
-  const m = Number(moyenneBesoinParGroupe);
-  const s = Number(moyenneSurfacePedagogique);
-   if (isNaN(h) || isNaN(m) || isNaN(s) || m === 0 || s === 0) {
+  const h = Number(heuresRestantes) || 0;
+  const m = Number(moyenneBesoinParGroupe) || 1;
+  const s = Number(moyenneSurfacePedagogique) || 1;
+  if (isNaN(h) || isNaN(m) || isNaN(s) || m === 0 || s === 0) {
     console.warn("Invalid input detected. Returning 0.");
     return 0;
   }

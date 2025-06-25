@@ -21,14 +21,15 @@ function calculerPourcentageLigne(heuresRestantes, heuresDemandées, etat) {
 const moyenne = arr => arr.length ? arr.reduce((a, b) => a + b, 0) / arr.length : 0;
 const somme = arr => arr.reduce((a, b) => a + b, 0);
 
+// عدل هنا: تأكد أن كل قيمة رقمية وليست undefined أو فارغة
 const defaultSalle = (cno, semaines, heures, diviseur = 1) => ({
   surface: "",
-  cno,
-  semaines,
-  heures,
-  diviseur,
+  cno: Number(cno) || 1,
+  semaines: Number(semaines) || 1,
+  heures: Number(heures) || 1,
+  diviseur: Number(diviseur) || 1,
   surfaceP: 0,
-  heuresMax: Math.round(semaines * heures * diviseur),
+  heuresMax: Math.round((Number(semaines) || 1) * (Number(heures) || 1) * (Number(diviseur) || 1)),
 });
 
 export default function TDA() {
@@ -94,11 +95,21 @@ export default function TDA() {
     if (saved) {
       const parsed = JSON.parse(saved);
       setSalles({
-        theorie: parsed.salles?.theorie || [defaultSalle(1.0, 72, 56, 1)],
-        pratique: parsed.salles?.pratique || [defaultSalle(1.0, 72, 56, 1)],
-        tpSpecifiques: parsed.salles?.tpSpecifiques || [defaultSalle(1.0, 72, 56, 1)],
-        tp2: parsed.salles?.tp2 || [defaultSalle(1.0, 72, 56, 1)],
-        tp3: parsed.salles?.tp3 || [defaultSalle(1.0, 72, 56, 1)],
+        theorie: parsed.salles?.theorie?.map(
+          s => defaultSalle(s.cno, s.semaines, s.heures, s.diviseur)
+        ) || [defaultSalle(1.0, 72, 56, 1)],
+        pratique: parsed.salles?.pratique?.map(
+          s => defaultSalle(s.cno, s.semaines, s.heures, s.diviseur)
+        ) || [defaultSalle(1.0, 72, 56, 1)],
+        tpSpecifiques: parsed.salles?.tpSpecifiques?.map(
+          s => defaultSalle(s.cno, s.semaines, s.heures, s.diviseur)
+        ) || [defaultSalle(1.0, 72, 56, 1)],
+        tp2: parsed.salles?.tp2?.map(
+          s => defaultSalle(s.cno, s.semaines, s.heures, s.diviseur)
+        ) || [defaultSalle(1.0, 72, 56, 1)],
+        tp3: parsed.salles?.tp3?.map(
+          s => defaultSalle(s.cno, s.semaines, s.heures, s.diviseur)
+        ) || [defaultSalle(1.0, 72, 56, 1)],
       });
       setEffectif(parsed.effectif || [{ specialite: "", groupes: 0, apprenants: 0 }]);
       setRepartition({

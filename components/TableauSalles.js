@@ -18,12 +18,12 @@ const salleTitles = [
 // diviseur = 1 افتراضي دائمًا
 const defaultSalle = (cno, semaines, heures, maxApprenants = 26, diviseur = 1) => ({
   surface: "",
-  cno,
-  semaines,
-  heures,
-  diviseur,
-  surfaceP: calculerSurfacePedagogique(0, cno, maxApprenants),
-  heuresMax: calculerHeuresMax(semaines, heures, diviseur),
+  cno: Number(cno) || 1,
+  semaines: Number(semaines) || 1,
+  heures: Number(heures) || 1,
+  diviseur: Number(diviseur) || 1,
+  surfaceP: calculerSurfacePedagogique(0, Number(cno) || 1, Number(maxApprenants) || 1),
+  heuresMax: calculerHeuresMax(Number(semaines) || 1, Number(heures) || 1, Number(diviseur) || 1),
 });
 
 export default function TableauSalles({
@@ -73,14 +73,14 @@ export default function TableauSalles({
       const arr = prev[type].slice();
       arr[index] = { ...arr[index], [field]: value };
       arr[index].surfaceP = calculerSurfacePedagogique(
-        parseFloat(arr[index].surface || 0),
-        parseFloat(arr[index].cno),
-        apprenants[type]
+        Number(arr[index].surface) || 0,
+        Number(arr[index].cno) || 1,
+        Number(apprenants[type]) || 1
       );
       arr[index].heuresMax = calculerHeuresMax(
-        arr[index].semaines,
-        arr[index].heures,
-        arr[index].diviseur || 1 // diviseur افتراضي 1
+        Number(arr[index].semaines) || 1,
+        Number(arr[index].heures) || 1,
+        Number(arr[index].diviseur) || 1
       );
       return { ...prev, [type]: arr };
     });
@@ -93,9 +93,9 @@ export default function TableauSalles({
         ...salle,
         cno: value,
         surfaceP: calculerSurfacePedagogique(
-          parseFloat(salle.surface || 0),
-          parseFloat(value),
-          apprenants[type]
+          Number(salle.surface) || 0,
+          Number(value) || 1,
+          Number(apprenants[type]) || 1
         )
       }));
       return { ...prev, [type]: arr };
@@ -107,7 +107,11 @@ export default function TableauSalles({
       const arr = prev[type].map(salle => ({
         ...salle,
         semaines: value,
-        heuresMax: calculerHeuresMax(value, salle.heures, salle.diviseur || 1)
+        heuresMax: calculerHeuresMax(
+          Number(value) || 1,
+          Number(salle.heures) || 1,
+          Number(salle.diviseur) || 1
+        )
       }));
       return { ...prev, [type]: arr };
     });
@@ -118,7 +122,11 @@ export default function TableauSalles({
       const arr = prev[type].map(salle => ({
         ...salle,
         heures: value,
-        heuresMax: calculerHeuresMax(salle.semaines, value, salle.diviseur || 1)
+        heuresMax: calculerHeuresMax(
+          Number(salle.semaines) || 1,
+          Number(value) || 1,
+          Number(salle.diviseur) || 1
+        )
       }));
       return { ...prev, [type]: arr };
     });
@@ -130,9 +138,9 @@ export default function TableauSalles({
       const arr = prev[type].map(salle => ({
         ...salle,
         surfaceP: calculerSurfacePedagogique(
-          parseFloat(salle.surface || 0),
-          parseFloat(salle.cno),
-          value
+          Number(salle.surface) || 0,
+          Number(salle.cno) || 1,
+          Number(value) || 1
         )
       }));
       return { ...prev, [type]: arr };
@@ -145,7 +153,11 @@ export default function TableauSalles({
       const arr = prev[type].map(salle => ({
         ...salle,
         diviseur: value,
-        heuresMax: calculerHeuresMax(salle.semaines, salle.heures, value)
+        heuresMax: calculerHeuresMax(
+          Number(salle.semaines) || 1,
+          Number(salle.heures) || 1,
+          Number(value) || 1
+        )
       }));
       return { ...prev, [type]: arr };
     });
@@ -179,8 +191,12 @@ export default function TableauSalles({
             {
               ...arr[0],
               surface: "",
-              surfaceP: calculerSurfacePedagogique(0, arr[0].cno, apprenants[type]),
-              heuresMax: calculerHeuresMax(arr[0].semaines, arr[0].heures, arr[0].diviseur || 1),
+              surfaceP: calculerSurfacePedagogique(0, Number(arr[0].cno) || 1, Number(apprenants[type]) || 1),
+              heuresMax: calculerHeuresMax(
+                Number(arr[0].semaines) || 1,
+                Number(arr[0].heures) || 1,
+                Number(arr[0].diviseur) || 1
+              ),
             }
           ]
         };
