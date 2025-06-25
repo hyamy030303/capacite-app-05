@@ -255,11 +255,11 @@ export default function TableauSalles({
                 {/* صف العناوين */}
                 <div className="flex gap-1 mb-1 justify-center">
   {[
-    { label: "CNO", width: "w-11" },
+    { label: "CNO", width: "w-12" },
     { label: "Sem.", width: "w-11" },
     { label: "Heures", width: "w-11" },
-    { label: "Appr.", width: "w-12" },
-    { label: "Diviseur", width: "w-12" }
+    { label: "Appr.", width: "w-11" },
+    { label: "Diviseur", width: "w-10" }
   ].map(({ label, width }) => (
     <span key={label} className={`text-xs ${width} text-center`}>{label}</span>
   ))}
