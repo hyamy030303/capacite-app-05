@@ -109,6 +109,34 @@ export default function TDA() {
         tp2: [defaultSalle(1.2, 72, 56, 1)],
         tp3: [defaultSalle(1.2, 72, 56, 1)],
       });
+      setCnos(parsed.cnos || {
+        theorie: 1.2,
+        pratique: 1.2,
+        tpSpecifiques: 1.2,
+        tp2: 1.2,
+        tp3: 1.2,
+      });
+      setSemaines(parsed.semaines || {
+        theorie: 72,
+        pratique: 72,
+        tpSpecifiques: 72,
+        tp2: 72,
+        tp3: 72,
+      });
+      setHeures(parsed.heures || {
+        theorie: 56,
+        pratique: 56,
+        tpSpecifiques: 56,
+        tp2: 56,
+        tp3: 56,
+      });
+      setApprenants(parsed.apprenants || {
+        theorie: 26,
+        pratique: 26,
+        tpSpecifiques: 26,
+        tp2: 26,
+        tp3: 26,
+      });
       setEffectif(parsed.effectif || [{ specialite: "", groupes: 0, apprenants: 0 }]);
       setRepartition({
         besoinTheoTotal: parsed.repartition?.besoinTheoTotal ?? 0,
@@ -338,7 +366,17 @@ export default function TDA() {
   };
 
   const handleSave = () => {
-    const data = { salles, effectif, repartition, dependancesChoices };
+    const data = {
+      salles,
+      effectif,
+      repartition,
+      dependancesChoices,
+      cnos,         // حفظ القوائم المنسدلة
+      semaines,
+      heures,
+      apprenants,
+      diviseur
+    };
     localStorage.setItem("tdaData", JSON.stringify(data));
     alert("Les données ont été enregistrées !");
   };
