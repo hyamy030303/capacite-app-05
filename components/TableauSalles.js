@@ -255,7 +255,7 @@ export default function TableauSalles({
                 {/* صف العناوين */}
                 <div className="flex gap-1 mb-1 justify-center">
   {[
-    { label: "CNO", width: "w-14" },      // زِد العرض هنا
+    { label: "CNO", width: "w-12" },      // زِد العرض هنا
     { label: "Sem.", width: "w-11" },
     { label: "Heures", width: "w-11" },
     { label: "Appr.", width: "w-11" },
@@ -269,7 +269,7 @@ export default function TableauSalles({
                   <select
                     value={cnos[key]}
                     onChange={e => updateCno(key, Number(e.target.value))}
-                    className="text-xs px-1 py-1 h-6 border rounded w-14 text-center" // زِد العرض هنا
+                    className="text-xs px-1 py-1 h-6 border rounded w-12 text-center" // زِد العرض هنا
                   >
                     {cnoOptions.map(opt => (
                       <option key={opt} value={opt}>{opt.toFixed(1)}</option>
