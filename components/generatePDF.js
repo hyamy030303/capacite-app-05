@@ -225,11 +225,11 @@ export function generatePDF({ sallesSummary, apprenantsSummary, resultatsTable, 
         row => row[0] && typeof row[0] === "object" && row[0].value === "Résultat Global"
       );
 
-      // إعداد مكان الجدولين جنبًا إلى جنب
+      // إعداد مكان الجدولين جنبًا إلى جنب (نفس هامش الصف الأول)
       const resultsTableWidth = tableWidth;
       const dependancesTableWidth = tableWidth;
       const resultsMargin = 14;
-      const dependancesMargin = pageWidth / 2 + 1; // يمين الصفحة
+      const dependancesMargin = pageWidth / 2 + 6; // <-- مثل apprenantsMargin في الصف الأول
 
       // رسم عنوان جدول النتائج (يسار)
       pdf.text('Synthèse des résultats', resultsMargin, tableStartY - 2);
