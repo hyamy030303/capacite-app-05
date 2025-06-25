@@ -12,7 +12,7 @@ export function calculerHeuresMax(semaines, heuresParSemaine = 56, diviseur = 1)
   const h = Number(heuresParSemaine) || 1;
   const d = Number(diviseur) || 1;
   if (isNaN(s) || isNaN(h) || isNaN(d)) return 0;
-  return h * s * d;
+  return h * s / d;
 }
 
 export function moyenneColonne(colonne) {
