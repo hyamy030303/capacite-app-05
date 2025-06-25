@@ -390,6 +390,41 @@ export default function TDA() {
       tp2: [defaultSalle(1.2, 72, 56, 1)],
       tp3: [defaultSalle(1.2, 72, 56, 1)],
     });
+    setCnos({
+      theorie: 1.2,
+      pratique: 1.2,
+      tpSpecifiques: 1.2,
+      tp2: 1.2,
+      tp3: 1.2,
+    });
+    setSemaines({
+      theorie: 72,
+      pratique: 72,
+      tpSpecifiques: 72,
+      tp2: 72,
+      tp3: 72,
+    });
+    setHeures({
+      theorie: 56,
+      pratique: 56,
+      tpSpecifiques: 56,
+      tp2: 56,
+      tp3: 56,
+    });
+    setApprenants({
+      theorie: 26,
+      pratique: 26,
+      tpSpecifiques: 26,
+      tp2: 26,
+      tp3: 26,
+    });
+    setDiviseur({
+      theorie: 1,
+      pratique: 1,
+      tpSpecifiques: 1,
+      tp2: 1,
+      tp3: 1,
+    });
     setEffectif([{ specialite: "", groupes: 0, apprenants: 0 }]);
     setRepartition({
       besoinTheoTotal: 0,
@@ -403,7 +438,7 @@ export default function TDA() {
       moyenneTp2: 0,
       moyenneTp3: 0,
     });
-    setDependancesChoices([0, 0, 0, 0]);
+    setDependancesChoices([0, 0, 0, 0, 0]); // عدّل للطول الصحيح حسب عدد عناصر dependancesList
     alert("Les données ont été réinitialisées.");
   };
 
