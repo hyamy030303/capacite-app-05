@@ -406,10 +406,11 @@ export default function TDP() {
   }, []);
 
   const dependancesList = [
-    "Équipe de formateurs adéquate aux groupes et spécialités",
-    "Certificat de prévention des risques de la Protection Civil",
-    "Voies de circulation et système de ventilation adéquats",
-    "Équipements nécessaires selon la spécificité des spécialités"
+    "Équipe de formateurs adéquate",
+    "Attestation de prévention (Protection Civil)",
+    "Voies de circulation adéquates",
+    "système de ventilation adéquat",
+    "Équipements nécessaires selon les spécialités"
   ];
 
   // تجهيز العلامات حسب اختيارات المستخدم (Oui/Non)
