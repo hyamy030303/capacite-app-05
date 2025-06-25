@@ -101,22 +101,13 @@ export default function TDA() {
     const saved = localStorage.getItem("tdaData");
     if (saved) {
       const parsed = JSON.parse(saved);
-      setSalles({
-        theorie: parsed.salles?.theorie?.map(
-          s => defaultSalle(s.cno, s.semaines, s.heures, s.diviseur)
-        ) || [defaultSalle(1.2, 72, 56, 1)],
-        pratique: parsed.salles?.pratique?.map(
-          s => defaultSalle(s.cno, s.semaines, s.heures, s.diviseur)
-        ) || [defaultSalle(1.2, 72, 56, 1)],
-        tpSpecifiques: parsed.salles?.tpSpecifiques?.map(
-          s => defaultSalle(s.cno, s.semaines, s.heures, s.diviseur)
-        ) || [defaultSalle(1.2, 72, 56, 1)],
-        tp2: parsed.salles?.tp2?.map(
-          s => defaultSalle(s.cno, s.semaines, s.heures, s.diviseur)
-        ) || [defaultSalle(1.2, 72, 56, 1)],
-        tp3: parsed.salles?.tp3?.map(
-          s => defaultSalle(s.cno, s.semaines, s.heures, s.diviseur)
-        ) || [defaultSalle(1.2, 72, 56, 1)],
+      // استرجع القاعات كما هي (مع كل الخصائص)
+      setSalles(parsed.salles || {
+        theorie: [defaultSalle(1.2, 72, 56, 1)],
+        pratique: [defaultSalle(1.2, 72, 56, 1)],
+        tpSpecifiques: [defaultSalle(1.2, 72, 56, 1)],
+        tp2: [defaultSalle(1.2, 72, 56, 1)],
+        tp3: [defaultSalle(1.2, 72, 56, 1)],
       });
       setEffectif(parsed.effectif || [{ specialite: "", groupes: 0, apprenants: 0 }]);
       setRepartition({
@@ -132,7 +123,6 @@ export default function TDA() {
         moyenneTp3: parsed.repartition?.moyenneTp3 ?? 0,
       });
       setDependancesChoices(parsed.dependancesChoices || [0, 0, 0, 0]);
-      // أضف هذا الجزء لتحديث diviseur من البيانات أو تهيئته افتراضياً
       setDiviseur(parsed.diviseur || {
         theorie: 1,
         pratique: 1,
