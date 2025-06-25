@@ -193,38 +193,6 @@ export function generatePDF({ sallesSummary, apprenantsSummary, resultatsTable, 
       }
     }
 
-    // --- جدول Dépendances في الوسط ---
-    if (dependancesSummary && dependancesSummary.length > 0) {
-      // تجهيز body مع تلوين "Oui" و"Non"
-      const dependancesBody = dependancesSummary.slice(1).map(row => [
-        { content: row[0] },
-        {
-          content: row[1],
-          styles: {
-            textColor:
-              row[1] === "Oui"
-                ? [22, 163, 74]   // أخضر
-                : row[1] === "Non"
-                ? [220, 38, 38]   // أحمر
-                : [44, 44, 44]    // رمادي افتراضي
-          }
-        }
-      ]);
-
-      autoTable(pdf, {
-        startY: tableStartY,
-        head: [dependancesSummary[0]],
-        body: dependancesBody,
-        styles: { fontSize: 9, cellWidth: 'wrap', wordBreak: 'normal' },
-        theme: 'grid',
-        headStyles: { fillColor: [236, 72, 153] }, // وردي
-        margin: { left: leftMargin }, // <-- هنا التغيير
-        tableWidth: tableWidth,
-        pageBreak: 'avoid'
-      });
-      tableStartY = pdf.lastAutoTable.finalY + 10;
-    }
-
     // --- ملخص النتائج و Résultat Global جنبًا إلى جنب ---
     if (resultatsTable && resultatsTable.rows.length > 0) {
       pdf.setFontSize(11);
@@ -259,11 +227,11 @@ export function generatePDF({ sallesSummary, apprenantsSummary, resultatsTable, 
 
       // إعداد مكان الجدولين جنبًا إلى جنب
       const resultsTableWidth = tableWidth;
-      const globalTableWidth = tableWidth; // نفس عرض الجدول الأول
+      const dependancesTableWidth = tableWidth;
       const resultsMargin = 14;
-      const globalMargin = pageWidth / 2 + 1; // بدون انتقاص من عرض الجدول الأول
+      const dependancesMargin = pageWidth / 2 + 1; // يمين الصفحة
 
-      // رسم عنوان جدول النتائج فقط (بدون عنوان Résultat Global)
+      // رسم عنوان جدول النتائج (يسار)
       pdf.text('Synthèse des résultats', resultsMargin, tableStartY - 2);
 
       // رسم جدول النتائج (يسار)
@@ -280,8 +248,44 @@ export function generatePDF({ sallesSummary, apprenantsSummary, resultatsTable, 
       });
       const resultsTableFinalY = pdf.lastAutoTable.finalY;
 
-      // رسم جدول Résultat Global (يمين)
-      let globalTableFinalY = tableStartY;
+      // رسم جدول Dépendances (يمين النتائج في نفس الصف)
+      let dependancesTableFinalY = tableStartY;
+      if (dependancesSummary && dependancesSummary.length > 0) {
+        // تجهيز body مع تلوين "Oui" و"Non"
+        const dependancesBody = dependancesSummary.slice(1).map(row => [
+          { content: row[0] },
+          {
+            content: row[1],
+            styles: {
+              textColor:
+                row[1] === "Oui"
+                  ? [22, 163, 74]
+                  : row[1] === "Non"
+                  ? [220, 38, 38]
+                  : [44, 44, 44]
+            }
+          }
+        ]);
+
+        // رسم عنوان جدول Dépendances (يمين)
+        pdf.text('Dépendances', dependancesMargin, tableStartY - 2);
+
+        autoTable(pdf, {
+          startY: tableStartY,
+          head: [dependancesSummary[0]],
+          body: dependancesBody,
+          styles: { fontSize: 9, cellWidth: 'wrap', wordBreak: 'normal' },
+          theme: 'grid',
+          headStyles: { fillColor: [236, 72, 153] },
+          margin: { left: dependancesMargin },
+          tableWidth: dependancesTableWidth,
+          pageBreak: 'avoid'
+        });
+        dependancesTableFinalY = pdf.lastAutoTable.finalY;
+      }
+
+      // جدول Résultat Global (سطر جديد بعد الجدولين)
+      let globalTableFinalY = Math.max(resultsTableFinalY, dependancesTableFinalY);
       if (globalRow) {
         const isExcedent = globalRow[1] === 'Excédent';
         const bgColor = isExcedent ? [39, 174, 96] : [231, 76, 60];
@@ -315,7 +319,7 @@ export function generatePDF({ sallesSummary, apprenantsSummary, resultatsTable, 
         const w2 = pdf.getTextWidth(resultText) + 20;
 
         autoTable(pdf, {
-          startY: resultsTableFinalY + 10, // سطر جديد بعد النتائج
+          startY: globalTableFinalY + 10, // سطر جديد بعد الجدولين
           body: [
             [
               { content: label, styles: { halign: 'center', fontStyle: 'bold', fontSize, cellWidth: w1, textColor: [0,0,0], fillColor: [255,255,255], lineWidth: 0 } },
@@ -330,17 +334,42 @@ export function generatePDF({ sallesSummary, apprenantsSummary, resultatsTable, 
             fontSize: 9
           },
           head: [],
-          margin: { left: leftMargin }, // في الوسط أو اليسار
-          tableWidth: w1 + w2 // عرض الجدول يساوي مجموع عرض العمودين
+          margin: { left: leftMargin },
+          tableWidth: w1 + w2
         });
         globalTableFinalY = pdf.lastAutoTable.finalY;
       }
 
       // تحديث Y بعد الجدولين
-      tableStartY = Math.max(resultsTableFinalY, globalTableFinalY) + 10;
+      tableStartY = Math.max(resultsTableFinalY, dependancesTableFinalY, globalTableFinalY) + 10;
     } else {
       console.warn('⚠️ لم يتم العثور على بيانات ملخص النتائج.');
     }
+
+    // --- النص التوضيحي أسفل النتائج ---
+    // حساب ارتفاع النص التوضيحي
+    const remarqueText =
+      "Remarques:\n" +
+      "1. Cette étude propose une estimation diagnostique de la capacité d'accueil, basée sur les données saisies. C'est un outil d'aide à la décision pour optimiser la planification, et non une validation définitive.\n" +
+      "2. Le résultat de l'étude demeure tributaire de la disponibilité des dépendances précitées" ;
+    // تقدير ارتفاع النص (كل سطر تقريباً 6مم)
+    const remarqueLines = remarqueText.split('\n').length;
+    const remarqueHeight = remarqueLines * 6 + 4;
+    // إذا لم يبق مكان كافٍ للنص في الصفحة، أضف صفحة جديدة
+    if (pageHeight - tableStartY < remarqueHeight + 10) {
+      pdf.addPage();
+      tableStartY = 20;
+    }
+
+    pdf.setFontSize(10);
+    pdf.setTextColor(80);
+    pdf.setFont(undefined, 'normal');
+    pdf.text(
+      remarqueText,
+      14,
+      tableStartY,
+      { maxWidth: pageWidth - 28, align: 'left' }
+    );
 
     // --- ترقيم الصفحات في كل صفحة ---
     const pageCount = pdf.getNumberOfPages();
