@@ -257,6 +257,7 @@ export default function TableauSalles({
                   <span className="text-xs w-12 text-center">Sem.</span>
                   <span className="text-xs w-12 text-center">Heures</span>
                   <span className="text-xs w-14 text-center">Appr.</span>
+                  <span className="text-xs w-14 text-center">Diviseur</span> {/* أضف هذا السطر */}
                 </div>
                 <div className="flex gap-1 justify-center">
                   <select
