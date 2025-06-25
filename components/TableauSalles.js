@@ -255,10 +255,10 @@ export default function TableauSalles({
                 {/* صف العناوين */}
                 <div className="flex gap-1 mb-1 justify-center">
   {[
-    { label: "CNO", width: "w-11" },      // زِد العرض هنا
-    { label: "Sem.", width: "w-10" },
-    { label: "Heures", width: "w-10" },
-    { label: "Appr.", width: "w-10" },
+    { label: "CNO", width: "w-12" },      // زِد العرض هنا
+    { label: "Sem.", width: "w-11" },
+    { label: "Heures", width: "w-11" },
+    { label: "Appr.", width: "w-11" },
     { label: "Diviseur", width: "w-9" }  // قلل العرض هنا
   ].map(({ label, width }) => (
     <span key={label} className={`text-xs ${width} text-center`}>{label}</span>
@@ -269,7 +269,7 @@ export default function TableauSalles({
                   <select
                     value={cnos[key]}
                     onChange={e => updateCno(key, Number(e.target.value))}
-                    className="text-xs px-1 py-1 h-6 border rounded w-11 text-center" // زِد العرض هنا
+                    className="text-xs px-1 py-1 h-6 border rounded w-12 text-center" // زِد العرض هنا
                   >
                     {cnoOptions.map(opt => (
                       <option key={opt} value={opt}>{opt.toFixed(1)}</option>
@@ -278,7 +278,7 @@ export default function TableauSalles({
                   <select
                     value={semaines[key]}
                     onChange={e => updateSemaines(key, Number(e.target.value))}
-                    className="text-xs px-1 py-1 h-6 border rounded w-10 text-center"
+                    className="text-xs px-1 py-1 h-6 border rounded w-11 text-center"
                   >
                     {semainesOptions.map(opt => (
                       <option key={opt} value={opt}>{opt}</option>
@@ -287,7 +287,7 @@ export default function TableauSalles({
                   <select
                     value={heures[key]}
                     onChange={e => updateHeures(key, Number(e.target.value))}
-                    className="text-xs px-1 py-1 h-6 border rounded w-10 text-center"
+                    className="text-xs px-1 py-1 h-6 border rounded w-11 text-center"
                   >
                     {heuresOptions.map(opt => (
                       <option key={opt} value={opt}>{opt}</option>
@@ -296,7 +296,7 @@ export default function TableauSalles({
                   <select
                     value={apprenants[key]}
                     onChange={e => updateApprenants(key, Number(e.target.value))}
-                    className="text-xs px-1 py-1 h-6 border rounded w-10 text-center"
+                    className="text-xs px-1 py-1 h-6 border rounded w-11 text-center"
                   >
                     {apprenantsOptions.map(opt => (
                       <option key={opt} value={opt}>{opt}</option>
