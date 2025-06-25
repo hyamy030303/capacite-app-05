@@ -48,7 +48,7 @@ export function calculerHeuresRestantes(sommeHeuresMax, sommeBesoinParSpecialite
 
 export function calculerApprenantsPossibles(heuresRestantes, moyenneBesoinParGroupe, moyenneSurfacePedagogique) {
   const h = Number(heuresRestantes) || 0;
-  const m = Number(moyenneBesoinParGroupe) || 1;
+  const m = Number(moyenneBesoinParGroupe) || 0;
   const s = Number(moyenneSurfacePedagogique) || 1;
   if (isNaN(h) || isNaN(m) || isNaN(s) || m === 0 || s === 0) {
     console.warn("Invalid input detected. Returning 0.");
