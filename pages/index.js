@@ -54,7 +54,7 @@ export default function Home() {
         />
         <h1
           className="
-    text-base sm:text-lg md:text-xl font-bold text-center text-gray-800 mb-3
+    text-base sm:text-lg md:text-xl font-bold text-center text-gray-800 mb-6
     inline-block
     px-4 py-1
     border border-black
