@@ -27,6 +27,23 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-6">
+      {/* روابط التسجيل والدخول أعلى الصفحة يميناً */}
+      <div className="w-full flex justify-end">
+        <div className="flex gap-2 mt-2 mr-2">
+          <Link
+            href="/register"
+            className="text-gray-500 underline text-xs"
+          >
+            S&apos;inscrire
+          </Link>
+          <Link
+            href="/login"
+            className="text-gray-500 underline text-xs"
+          >
+            Se connecter
+          </Link>
+        </div>
+      </div>
       <div className="bg-white rounded-2xl shadow-lg p-8 max-w-3xl w-full text-center">
         {/* شعار بمقاس 360x60 */}
         <Image
@@ -93,15 +110,6 @@ export default function Home() {
             Simulateur de l&apos;état prévu
           </button>
         </div>
-
-        <p className="mt-4">
-          <Link href="/register" className="text-blue-600 underline mr-4">
-            Créer un compte
-          </Link>
-          <Link href="/login" className="text-blue-600 underline">
-            Se connecter
-          </Link>
-        </p>
 
         <p className="text-sm text-gray-500">
           Version : <strong>V1.0</strong>
