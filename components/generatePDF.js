@@ -193,7 +193,7 @@ export function generatePDF({ sallesSummary, apprenantsSummary, resultatsTable, 
       }
     }
 
-    // --- ملخص النتائج و Résultat Global جنبًا إلى جنب ---
+    //  ملخص النتائج و Résultat Global جنبًا إلى جنب 
     if (resultatsTable && resultatsTable.rows.length > 0) {
       pdf.setFontSize(11);
 
