@@ -13,7 +13,7 @@ export default function Login() {
       localStorage.setItem("loggedIn", "true");
       router.push("/");
     } else {
-      alert("Nom d'utilisateur ou mot de passe incorrect");
+      alert("Nom d&apos;utilisateur ou mot de passe incorrect");
     }
   };
 
@@ -23,7 +23,7 @@ export default function Login() {
         <h2 className="text-xl font-bold mb-4 text-center">Connexion</h2>
         <input
           type="text"
-          placeholder="Nom d'utilisateur"
+          placeholder="Nom d&apos;utilisateur"
           value={username}
           onChange={e => setUsername(e.target.value)}
           className="w-full border p-2 mb-3 rounded"
