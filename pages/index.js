@@ -27,9 +27,9 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-6">
-      {/* روابط التسجيل والدخول أعلى الصفحة يميناً */}
-      <div className="w-full flex justify-end">
-        <div className="flex gap-2 mt-2 mr-2">
+      <div className="bg-white rounded-2xl shadow-lg p-8 max-w-3xl w-full text-center relative">
+        {/* روابط التسجيل والدخول داخل الحاوي أعلى اليمين */}
+        <div className="absolute top-4 right-6 flex gap-2">
           <Link
             href="/register"
             className="text-gray-500 underline text-xs"
@@ -43,8 +43,6 @@ export default function Home() {
             Se connecter
           </Link>
         </div>
-      </div>
-      <div className="bg-white rounded-2xl shadow-lg p-8 max-w-3xl w-full text-center">
         {/* شعار بمقاس 360x60 */}
         <Image
           src="/logo.png"
