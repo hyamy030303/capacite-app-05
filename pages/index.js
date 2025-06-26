@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Home() {
   const router = useRouter();
@@ -92,6 +93,15 @@ export default function Home() {
             Simulateur de l&apos;état prévu
           </button>
         </div>
+
+        <p className="mt-4">
+          <Link href="/register" className="text-blue-600 underline mr-4">
+            Créer un compte
+          </Link>
+          <Link href="/login" className="text-blue-600 underline">
+            Se connecter
+          </Link>
+        </p>
 
         <p className="text-sm text-gray-500">
           Version : <strong>V1.0</strong>
