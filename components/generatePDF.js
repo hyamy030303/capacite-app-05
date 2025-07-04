@@ -197,7 +197,7 @@ export function generatePDF({ sallesSummary, apprenantsSummary, resultatsTable, 
     if (resultatsTable && resultatsTable.rows.length > 0) {
       pdf.setFontSize(11);
 
-      // إعداد بيانات جدول النتائج
+      // إعداد بيانات النتائج
       const resultsHead = [resultatsTable.columns.slice(0, 4)];
       const rowsSansGlobal = resultatsTable.rows.filter(
         row => !(row[0] && typeof row[0] === "object" && row[0].value === "Résultat Global")
